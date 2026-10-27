@@ -7,7 +7,7 @@
  if(g){g.textContent=t<720?'Good morning.':t<1020?'Good afternoon.':'See you tomorrow at 9.'}
  var chips=[].slice.call(document.querySelectorAll('.chip'));
  if(chips.length&&'IntersectionObserver' in window){
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){chips.forEach(function(c){var on=c.getAttribute('href')==='#'+e.target.id;c.classList.toggle('on',on);if(on&&c.scrollIntoView){c.parentNode.scrollTo({left:c.offsetLeft-16,behavior:'smooth'})}})}})},{rootMargin:'-140px 0px -70% 0px'});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){chips.forEach(function(c){var on=c.getAttribute('href')==='#'+e.target.id;c.classList.toggle('on',on);if(on)c.setAttribute('aria-current','true');else c.removeAttribute('aria-current');if(on&&c.scrollIntoView){c.parentNode.scrollTo({left:c.offsetLeft-16,behavior:'smooth'})}})}})},{rootMargin:'-140px 0px -70% 0px'});
   document.querySelectorAll('.cat').forEach(function(c){io.observe(c)});
  }
 })();
